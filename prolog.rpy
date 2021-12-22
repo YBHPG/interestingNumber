@@ -13,8 +13,9 @@ init:
     $ gh = Character(u'Гошан', color='#9E8565', what_color='#E2C778')
     $ cn = Character(u'Саня', color='#A52A2A', what_color='#E2C778')
     $ iv = Character(u'Внутренний голос', color='#ddf9ff', what_color='#E2C778')
-    image kitchen = '/interestingNumber/images/kitchen_dev.jpg'
+    image kitchen = '/interestingNumber/images/kitchen.jpg'
     image prologue_lada = '/interestingNumber/images/prologue_lada.jpg'
+
 label interestingNumber:
     play music '/interestingNumber/sound/skazka.mp3'
     scene bg semen_room with dissolve
@@ -88,6 +89,7 @@ label interestingNumber:
     play sound sfx_close_door_1
     scene kitchen with dissolve
     'Только мы зашли обратно, как Саня встретил нас очередной колкостью.'
+    stop sound
     cn 'О, а я думал, что ты упал. Поэтому Гошана на разведку отправил.'
     lx 'Ха-ха. Не дождёшься. Наша туса только началась.'
     'Тут Гошан обнаружил мою старую акустику.'
@@ -101,6 +103,7 @@ label interestingNumber:
     gh 'Лёха, чё завис опять? Может, к врачу тебя сводить, а то так и загнёшься?'
     lx 'А? Чё? Не, всё пучком. Я просто песни вспоминал.'
     'Я настроил гитару и первое, что сыграл - мою любимую песню Цоя - “Троллейбус”.'
+    # стеклянный звук бутылки
     'Когда я закончил, то увидел Санька, достающего несколько бутылок водки.'
     'И тут понеслось…'
     'После трёх бутылок мы перестали соображать трезво. И тут Гошан выдал фразу:'
@@ -119,6 +122,7 @@ label interestingNumber:
         yzoom 2.0
     'Мы вышли на улицу и подошли к моему подарку от родителей - Жигулям. Саня протестовал, а Гошан пытался его успокоить, говоря, что всё будет хорошо.'
     'Я залез в чудо советского автопрома, а за мной мои друганы.'
+    stop sound fadeout 1.5
     'Не знаю, как мы стартанули, но последнее, что мы видели — это яркие фары и номер “410-й”.'
     show blink
     stop music fadeout 0.5
