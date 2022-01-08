@@ -1,5 +1,6 @@
 init:
-    # points
+
+    # point vaiables
     $ slgood = 0
     $ usgood = 0
     $ ungood = 0
@@ -8,12 +9,18 @@ init:
     $ sqare = 0
     $ oston = 0
     $ libri = 0
+
+    # mod name & start tag
     $ mods['interestingNumber'] = u'Интересный номер'
+
+    # additional characters
     $ lx = Character(u'Лёха', color='#B8860B', what_color='#E2C778')
     $ gh = Character(u'Гошан', color='#9E8565', what_color='#E2C778')
     $ cn = Character(u'Саня', color='#A52A2A', what_color='#E2C778')
     $ iv = Character(u'Внутренний голос', color='#ddf9ff', what_color='#E2C778')
-    image kitchen = '/interestingNumber/images/kitchen.jpg'
+
+    # images
+    image prologue_kitchen = '/interestingNumber/images/prologue_kitchen.jpg'
     image prologue_lada = '/interestingNumber/images/prologue_lada.jpg'
 
 label interestingNumber:
@@ -55,7 +62,7 @@ label interestingNumber:
     'У него тоже есть своя “роль” - истреблять еду.'
     'Зайдя в квартиру и обменявшись любезностями, мы прошли на кухню.'
     play sound sfx_steps_clubs_nextroom
-    show kitchen with dissolve
+    show prologue_kitchen with dissolve
     'Спустя пару часов общения о нашей жизни я узнал много нового. Санёк, как никто не был удивлён, вполне сносно учится.'
     'Хотя, я считаю, что в универе мало чему учишься.'
     'Он даже стал старостой группы. Короче говоря, живёт неплохо.'
@@ -87,7 +94,7 @@ label interestingNumber:
     'Гошан, видимо, был доволен моей реакцией и, похлопав меня по плечу, повёл обратно на кухню.'
     show blinking
     play sound sfx_close_door_1
-    scene kitchen with dissolve
+    scene prologue_kitchen with dissolve
     'Только мы зашли обратно, как Саня встретил нас очередной колкостью.'
     stop sound
     cn 'О, а я думал, что ты упал. Поэтому Гошана на разведку отправил.'
@@ -128,4 +135,4 @@ label interestingNumber:
     stop music fadeout 0.5
     'В моей голове промелькнула фраза: “Интересный номер”.'
     'И тут погас свет.'
-jump ourrday1
+jump ourday1
