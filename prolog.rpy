@@ -160,4 +160,4 @@ label interestingNumber:
     'В моей голове промелькнула фраза: \"Интересный номер\".'
     'И тут погас свет.'
 
-jump ourday1
+jump interestingNumber_day1
