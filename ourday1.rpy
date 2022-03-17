@@ -246,12 +246,10 @@ label ourday1:
 
         menu:
             'Попросить провести экскурсию':
-
                 $ slgood += 1
                 jump yes_sl
 
             'Не просить об экскурсии':
-
                 jump no_sl
 
 
@@ -2090,4 +2088,4 @@ label ourday1:
 
         'Я хотел что-то спросить, но в этот момент проснулся.'
         
-        jump ourrday2
+        jump ourday2
