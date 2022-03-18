@@ -2099,8 +2099,4 @@ label interestingNumber_day1:
 
         'Я хотел что-то спросить, но в этот момент проснулся.'
         
-<<<<<<< HEAD
         jump ourday2
-=======
-        jump interestingNumber_day2
->>>>>>> origin/dev
