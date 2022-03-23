@@ -1,4 +1,4 @@
-label ourday2
+label ourday2:
 
     #flag bool variables
     flag_alisa = False
