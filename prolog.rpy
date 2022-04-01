@@ -42,6 +42,7 @@ label interestingNumber:
 
     stop sound
     play sound sfx_inhale
+    play music['feeling_good'] fadeout 1.5 fadein 1.0
 
     th 'Чёрт, сколько я так сидел? Всё тело затекло.'
 
