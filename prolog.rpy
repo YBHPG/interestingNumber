@@ -18,6 +18,7 @@ init:
     $ gh = Character(u'Гошан', color='#9E8565', what_color='#E2C778')
     $ cn = Character(u'Саня', color='#A52A2A', what_color='#E2C778')
     $ iv = Character(u'Внутренний голос', color='#ddf9ff', what_color='#E2C778')
+    $ unvo = Character(u'Голос', color='#FAFAFA', what_color='#E2C778')
 
     # images
     image prologue_kitchen = '/interestingNumber/images/prologue/prologue_kitchen.jpg'
@@ -42,7 +43,7 @@ label interestingNumber:
 
     stop sound
     play sound sfx_inhale
-    play music['feeling_good'] fadeout 1.5 fadein 1.0
+    play music['everyday_theme'] fadeout 1.5 fadein 1.0
 
     th 'Чёрт, сколько я так сидел? Всё тело затекло.'
 

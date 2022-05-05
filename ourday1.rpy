@@ -2099,4 +2099,4 @@ label interestingNumber_day1:
 
         'Я хотел что-то спросить, но в этот момент проснулся.'
         
-        # jump ourday2
+        jump ourday2
