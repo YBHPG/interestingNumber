@@ -1197,7 +1197,6 @@ label interestingNumber_day1:
             $ renpy.pause(1)
             scene bg int_dining_hall_people_day with dissolve
             play ambience ambience_dining_hall_full fadein 1
-            # TODO: stoldap is not defined
             play music '/interestingNumber/sound/k_stolovke.mp3' fadein 1.5
 
             play sound sfx_open_door_1
@@ -2016,7 +2015,6 @@ label interestingNumber_day1:
 
         'Я сижу на кухне. {w}На столе скомканная пачка сигарет, рядом с ней чашка чая.'
 
-        # TODO: kashelda1 is not defined
         play sound '/interestingNumber/sound/kashelda1.mp3'
 
         'Делаю затяжку, кашляю.'
