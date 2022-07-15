@@ -1,4 +1,4 @@
-label interestingNumber_day1:
+label InterestingNumber_day1:
 
     # images
     image day1_railroad = '/interestingNumber/images/day1/day1_railroad.jpg'
@@ -201,12 +201,14 @@ label interestingNumber_day1:
     cn 'Ну вот и отлично. Куда пойдём?'
 
     $ disable_all_zones()
-    $ set_zone('square', 'day1_square')
-    $ set_zone('camp_entrance', 'day1_enterance')
-    $ set_zone('library', 'day1_library')
+    $ set_zone('square', 'Square_day1')
+    $ set_zone('camp_entrance', 'BusStop_day1')
+    $ set_zone('library', 'WentToLibrary_day1')
     $ show_map()
 
-    label day1_square:
+    label Square_day1:
+
+        $ day1_wentToSquare = True
 
         scene bg ext_square_day
 
@@ -247,14 +249,15 @@ label interestingNumber_day1:
 
         menu:
             'Попросить провести экскурсию':
-                $ slgood += 1
-                jump yes_sl
+                $ slPoints += 1
+                $ day1_wentWithSlavya = True
+                jump goWithSlavya_day1
 
             'Не просить об экскурсии':
-                jump no_sl
+                jump notGoWithSlavya_day1
 
 
-        label yes_sl:
+        label goWithSlavya_day1:
 
             play music music_list['get_to_know_me_better'] fadein 2
             scene bg ext_square_day
@@ -362,11 +365,10 @@ label interestingNumber_day1:
 
             lx 'Есть идея. Двигаем на площадь, там расскажу.'
 
-            $ sqare += 1
-            jump dalee
+            jump tryingToGetOut_day1
 
 
-        label no_sl:
+        label notGoWithSlavya_day1:
 
             th 'Да ну нет. Зачем человека загружать. Сами всё посмотрим.'
             lx 'Ладно. Спасибо за информацию. Ещё раз рад знакомству.'
@@ -397,15 +399,16 @@ label interestingNumber_day1:
             menu:
                 'Помочь Гошану':
 
-                    $ dvgood += 1
-                    jump gosha_help
+                    $ dvPoints += 1
+                    $ day1_helpedGosha = True
+                    jump HelpedGosha_day1
 
                 'Смотреть на шоу':
 
-                    jump no_gosha_help
+                    jump NotHelpedGosha_day1
 
 
-            label gosha_help:
+            label HelpedGosha_day1:
 
                 scene bg ext_houses_day
 
@@ -457,11 +460,10 @@ label interestingNumber_day1:
 
                 lx 'Есть идея. Двигаем на площадь, там расскажу.'
                 
-                $ sqare += 1
-                jump dalee
+                jump tryingToGetOut_day1
 
 
-            label no_gosha_help:
+            label NotHelpedGosha_day1:
 
                 scene bg ext_houses_day
 
@@ -495,11 +497,12 @@ label interestingNumber_day1:
 
                 lx 'Есть идея. Двигаем на площадь, там расскажу.'
 
-                $ sqare += 1
-                jump dalee
+                jump tryingToGetOut_day1
 
 
-    label day1_enterance:
+    label BusStop_day1:
+
+        $ day1_wentToBusStop = True
 
         scene bg ext_square_day
 
@@ -604,54 +607,15 @@ label interestingNumber_day1:
         th 'Хм. Неплохая идея, но надо ли?'
 
         menu:
-            'Отказаться от вступления':
-                jump nemiku
-
             'Записаться в клуб':
-                $ migood += 1
-                jump xoroshomiku
+                $ miPoints += 1
+                $ day1_attendMusicClub = True
+                jump AttendMusicClub_day1
 
-        label nemiku:
-            
-            scene bg int_musclub_day with dissolve
+            'Отказаться от вступления':
+                jump NotAttendMusicClub_day1
 
-            th 'Всё же нет. Парни сюда не будут ходить, а одному, хоть и с такой девушкой...'
-            th 'Но и отказывать ей как-то не хочется. Мда, ну и ситуация.'
-            lx 'Даже не знаю. Я тут толком ничего не видел. Наверно, пока что откажусь. Ты же не обидишься?'
-            'Мику на секунду погрустнела, но потом снова вернула прежнее лицо.'
-            mi 'Да ничего. Можешь заходить, когда захочешь. А я помогу с недочётами в игре, если у тебя будет желание.'
-            'Она повернула голову в сторону парней.'
-            mi 'А вы не хотите записаться?'
-            'Гошан отрицательно помотал головой, а у Саня откуда-то появилась страсть делать комплименты женскому полу, которую я раньше не замечал.'
-            cn 'Эх. Прости. Я, конечно, был бы не против побыть с тобой подольше, но куда друзья, туда и я.'
-            'Он был горд своей фразой, а Мику опять засмущалась.'
-
-            scene bg ext_musclub_day with dissolve
-            play sound sfx_open_door_1
-
-            'Попрощавшись с Мику, мы поставили чашки и вышли на улицу.'
-
-            stop sound
-            play music music_list['everyday_theme'] fadeout 1 fadein 2
-
-            'Пройдя до ближайшей скамейки, мы присели отдохнуть. Я посмотрел на Саню.'
-            lx 'И что это было?'
-            'Саня непонимающе посмотрел на меня.'
-            cn 'Ты о чём?'
-            'Я сверлил его взглядом.'
-            lx 'Странно ведёшь себя. Уже какой раз комплимент Мику отвешиваешь, хотя раньше такого я не замечал.'
-            'Саня усмехнулся.'
-            cn 'Да ладно тебе, Лёх. Когда ещё будет возможность узнать, насколько я хорош в этом деле?'
-            play sound sfx_inhale
-            'Я выдохнул.'
-            stop sound fadeout 0.5
-            lx 'Ладно, Дон Жуан недоделанный. Пойдёмте на площадь, у меня идея есть.'
-
-            scene bg ext_square_day with dissolve
-            $ oston += 1
-            jump dalee
-
-        label xoroshomiku:
+        label AttendMusicClub_day1:
 
             th 'Ладно, чем чёрт не шутит? Да и к тому же, не буду же я тут всё время проводить? Зато на гитаре смогу играть.'
             iv '{i}Причём рядом с красивой девушкой!{/i}'
@@ -690,10 +654,52 @@ label interestingNumber_day1:
             lx 'Ладно, Дон Жуан недоделанный. Пойдёмте на площадь, у меня идея есть.'
 
             scene bg ext_square_day with dissolve
-            $ oston += 1
-            jump dalee
 
-    label day1_library:
+            jump tryingToGetOut_day1
+
+        label NotAttendMusicClub_day1:
+            
+            scene bg int_musclub_day with dissolve
+
+            th 'Всё же нет. Парни сюда не будут ходить, а одному, хоть и с такой девушкой...'
+            th 'Но и отказывать ей как-то не хочется. Мда, ну и ситуация.'
+            lx 'Даже не знаю. Я тут толком ничего не видел. Наверно, пока что откажусь. Ты же не обидишься?'
+            'Мику на секунду погрустнела, но потом снова вернула прежнее лицо.'
+            mi 'Да ничего. Можешь заходить, когда захочешь. А я помогу с недочётами в игре, если у тебя будет желание.'
+            'Она повернула голову в сторону парней.'
+            mi 'А вы не хотите записаться?'
+            'Гошан отрицательно помотал головой, а у Саня откуда-то появилась страсть делать комплименты женскому полу, которую я раньше не замечал.'
+            cn 'Эх. Прости. Я, конечно, был бы не против побыть с тобой подольше, но куда друзья, туда и я.'
+            'Он был горд своей фразой, а Мику опять засмущалась.'
+
+            scene bg ext_musclub_day with dissolve
+            play sound sfx_open_door_1
+
+            'Попрощавшись с Мику, мы поставили чашки и вышли на улицу.'
+
+            stop sound
+            play music music_list['everyday_theme'] fadeout 1 fadein 2
+
+            'Пройдя до ближайшей скамейки, мы присели отдохнуть. Я посмотрел на Саню.'
+            lx 'И что это было?'
+            'Саня непонимающе посмотрел на меня.'
+            cn 'Ты о чём?'
+            'Я сверлил его взглядом.'
+            lx 'Странно ведёшь себя. Уже какой раз комплимент Мику отвешиваешь, хотя раньше такого я не замечал.'
+            'Саня усмехнулся.'
+            cn 'Да ладно тебе, Лёх. Когда ещё будет возможность узнать, насколько я хорош в этом деле?'
+            play sound sfx_inhale
+            'Я выдохнул.'
+            stop sound fadeout 0.5
+            lx 'Ладно, Дон Жуан недоделанный. Пойдёмте на площадь, у меня идея есть.'
+
+            scene bg ext_square_day with dissolve
+            $ oston += 1
+            jump tryingToGetOut_day1
+
+    label Library_day1:
+
+        $ day1_wentToLibrary = True
 
         scene bg ext_square_day
         
@@ -760,14 +766,15 @@ label interestingNumber_day1:
 
         menu:
             'Помочь с уборкой':
-                $ ungood += 1
-                jump gosha_help1
+                $ unPoints += 1
+                $ day1_helpedLena = True
+                jump HelpedLena_day1
 
             'Отказаться помогать':
-                jump nelena
+                jump NotHelpedLena_day1
 
 
-        label gosha_help1:
+        label HelpedLena_day1:
 
             scene bg int_library_day
 
@@ -831,10 +838,10 @@ label interestingNumber_day1:
 
             scene bg ext_square_day with dissolve
             $ libri += 1
-            jump dalee
+            jump tryingToGetOut_day1
 
 
-        label nelena:
+        label NotHelpedLena_day1:
             scene bg int_library_day
 
             th 'Да ну нафиг. Мы вместо уборки можем что-нибудь полезнее сделать. Хотя, некрасиво получается. Надо как-то выкрутиться.'
@@ -897,14 +904,15 @@ label interestingNumber_day1:
 
             menu:
                 'Согласиться':
-                    $ usgood += 1
-                    jump wellda
+                    $ usPoints += 1
+                    $ day1_agreedWithUlyana = True
+                    jump AgreedWithUlyana_day1
 
                 'Не согласится':
-                    jump wellnet
+                    jump NotAgreedWithUlyana_day1
 
 
-            label wellda:
+            label AgreedWithUlyana_day1:
 
                 scene bg ext_library_day
 
@@ -932,11 +940,11 @@ label interestingNumber_day1:
                 lx 'Хм. Парни, у меня есть неплохая идея. Только давайте сначала на площадь. Там все объясню.'
 
                 scene bg ext_square_day with dissolve
-                $ libri += 1
-                jump dalee
+
+                jump tryingToGetOut_day1
 
 
-            label wellnet:
+            label NotAgreedWithUlyana_day1:
 
                 scene bg ext_library_day
 
@@ -971,11 +979,10 @@ label interestingNumber_day1:
 
                 lx 'Парни, у меня есть неплохая идея. Двигаем на площадь, там все расскажу.'
 
-                $ libri += 1
-                jump dalee
+                jump tryingToGetOut_day1
 
 
-    label dalee:
+    label tryingToGetOut_day1:
 
         scene bg ext_square_day with dissolve
 
@@ -1101,25 +1108,25 @@ label interestingNumber_day1:
         th 'Ммм. Пропаганда. Знаем, слышали.'
         'Саня уже хотел что-то сказать, но я его перебил.'
 
-        if migood == 1:
-            jump neser
+        if day1_attendMusicClub:
+            jump AttendedMusicClubNoElectronic_day1
         else:
-            jump yesser
+            jump NoElectronic_day1
 
 
-        label yesser:
+        label NoElectronic_day1:
             scene bg ext_clubs_day
             lx 'Серёга, мы тут первый день, мало что видели. Дай осмотреться, а потом подумаем куда вступать.'
-            jump ser_continue
+            jump AfterElectronic_day1
 
 
-        label neser:
+        label AttendedMusicClubNoElectronic_day1:
             scene bg ext_clubs_day
             lx 'Серый, дай парням осмотреться, а я уже записался в муз. клуб.'
-            jump ser_continue
+            jump AfterElectronic_day1
 
 
-        label ser_continue:
+        label AfterElectronic_day1:
 
             scene bg ext_clubs_day
             'Электроник немного погрустнел, но потом снова заулыбался.'
@@ -1207,25 +1214,25 @@ label interestingNumber_day1:
 
             'Наши глаза выцепили только два стола, где были свободны три стула.'
 
-            if sqare == 1:
-                jump sqare_da
-            if oston == 1:
-                jump oston_da
-            if libri == 1:
-                jump libri_da
+            if day1_wentToSquare:
+                jump CafeteriaAfterSquare_day1
+            if day1_wentToBusStop:
+                jump CafeteriaAfterBusStop_day1
+            if day1_wentToLibrary:
+                jump CafeteriaAfterLibrary_day1
 
 
-    label sqare_da:
+    label CafeteriaAfterSquare_day1:
 
         scene bg int_dining_hall_people_day
 
-        if slgood == 1:
-            jump provodnik
+        if day1_wentWithSlavya:
+            jump CafeteriaWentWithSlavya_day1
         else:
-            jump samida
+            jump CafeteriaWentWithoitSlavya_day1
 
 
-        label provodnik:
+        label CafeteriaWentWithSlavya_day1:
 
             scene bg int_dining_hall_people_day
 
@@ -1234,13 +1241,14 @@ label interestingNumber_day1:
 
             menu:
                 'Сесть за стол к Славе':
-                    jump provod_slda
+                    jump WentWithSlavyaSitWithSlavya_day1
 
                 'Сесть за стол к неизвестным':
-                    jump provod_slnet
+                    jump WentWithSlavyaSitWithOthers_day1
 
 
-            label provod_slda:
+            label WentWithSlavyaSitWithSlavya_day1:
+
                 scene bg int_dining_hall_people_day
 
                 'Мы решили сесть со знакомым человеком. Взяв подносы с едой, мы отправились к столу, где сидела Славя.'
@@ -1263,15 +1271,15 @@ label interestingNumber_day1:
                 'Назвав их имена, она вкратце рассказала кто чем занимается.'
                 th 'Полезная информация.'
 
-                if slgood == 0:
-                    call da_odinakovo
+                if slPoints == 0:
+                    jump SlavyaExtendedDialog_day1
 
                 'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
-                jump skoro_kon
+                jump AfterCafeteria_day1
 
 
-            label provod_slnet:
+            label WentWithSlavyaSitWithOthers_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1314,10 +1322,10 @@ label interestingNumber_day1:
                 'После этого все за столиком, кроме Мику, молча доедали, а она без умолку о чём-то говорила.'
                 'Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
-                jump skoro_kon
+                jump AfterCafeteria_day1
 
 
-        label samida:
+        label CafeteriaWentWithoitSlavya_day1:
 
             scene bg int_dining_hall_people_day
             'За первым столом сидели две рыжие, одна из них была нам уже знакома. Рядом с ней была мелкая девочка и девушка с аквамариновыми волосами.'
@@ -1325,16 +1333,16 @@ label interestingNumber_day1:
 
             menu:
                 'Сесть за стол к Славе':
-                    jump provod_slda
+                    jump WentWithSlavyaSitWithSlavya_day1
 
                 'Сесть за стол к рыжим':
-                    if dvgood == 1:
-                        jump neno_gosha_help_dv
+                    if day1_helpedGosha:
+                        jump HelpedGoshaSitWithOthers_day1
                     else:
-                        jump no_gosha_help_dv
+                        jump NotHelpedGoshaSitWithOthers_day1
 
 
-            label neno_gosha_help_dv:
+            label HelpedGoshaSitWithOthers_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1387,10 +1395,10 @@ label interestingNumber_day1:
                 'После этого все за столиком, кроме Мику, молча доедали, а она без умолку о чём-то говорила.'
                 'Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
-                jump skoro_kon
+                jump AfterCafeteria_day1
 
 
-            label no_gosha_help_dv:
+            label NotHelpedGoshaSitWithOthers_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1434,10 +1442,10 @@ label interestingNumber_day1:
                 'После этого все за столиком, кроме Мику, молча доедали, а она без умолку о чём-то говорила.'
                 'Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
-                jump skoro_kon
+                jump AfterCafeteria_day1
 
 
-            label da_odinakovo:
+            label SlavyaExtendedDialog_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1451,10 +1459,10 @@ label interestingNumber_day1:
                 'Я лишь кивнул в ответ.'
                 'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
-                jump skoro_kon
+                jump AfterCafeteria_day1
 
 
-    label oston_da:
+    label CafeteriaAfterBusStop_day1:
 
         scene bg int_dining_hall_people_day
 
@@ -1463,13 +1471,13 @@ label interestingNumber_day1:
 
         menu:
             'Сесть к Мику':
-                jump da_mimiku
+                jump WentToBusStopSitWithMiku_day1
 
             'Сесть за стол к незнакомым':
-                jump net_mimiku
+                jump WentToBusStopSitWithOthers_day1
 
 
-        label da_mimiku:
+        label WentToBusStopSitWithMiku_day1:
 
             scene bg int_dining_hall_people_day
 
@@ -1494,13 +1502,13 @@ label interestingNumber_day1:
             'После осмотра новых лиц, я приступил к трапезе.'
             'По видимому, не выдержав тишины, Мику снова начала говорить.'
 
-            if migood == 1:
-                jump dada_miku
+            if day1_attendMusicClub:
+                jump AttendedMusicClubMikuExtendedDialog_day1
             else:
-                jump neet_miku
+                jump NotAttendedMusicClubMikuExtendedDialog_day1
 
 
-            label dada_miku:
+            label AttendedMusicClubMikuExtendedDialog_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1514,10 +1522,10 @@ label interestingNumber_day1:
                 'Алиса оторвалась от еды и посмотрела сначала на Мику, а потом на меня.'
                 dv 'Хорошо играешь, да? Надо как-нибудь проверить.'
 
-                jump miiku
+                jump MikuDialogContinue_day1
 
 
-            label neet_miku:
+            label NotAttendedMusicClubMikuExtendedDialog_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1527,10 +1535,10 @@ label interestingNumber_day1:
                 'Тут Алиса встряла в наш разговор.'
                 dv 'Хорошо умеешь играть на гитаре? Что-то мне не особо верится, надо будет проверить твои способности.'
 
-                jump miiku
+                jump MikuDialogContinue_day1
 
 
-            label miiku:
+            label MikuDialogContinue_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1543,10 +1551,10 @@ label interestingNumber_day1:
                 lx 'Спасибо большое, что рассказала. Познакомимся с ними как-нибудь позже.'
                 'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
-                jump skoro_kon
+                jump AfterCafeteria_day1
 
 
-        label net_mimiku:
+        label WentToBusStopSitWithOthers_day1:
 
             scene bg int_dining_hall_people_day
 
@@ -1583,20 +1591,20 @@ label interestingNumber_day1:
             lx 'Спасибо за информацию, будем знать.'
             'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
-            jump skoro_kon
+            jump AfterCafeteria_day1
 
 
-    label libri_da:
+    label CafeteriaAfterLibrary_day1:
 
         scene bg int_dining_hall_people_day
 
-        if ungood == 1:
-            jump gosha_help1_da
+        if day1_helpedLena:
+            jump CafeteriaHelpedLenaInLibrary_day1
         else:
-            jump gosha_help_no
+            jump CafeteriaNotHelpedLenaInLibrary_day1
 
 
-        label gosha_help1_da:
+        label CafeteriaHelpedLenaInLibrary_day1:
 
             scene bg int_dining_hall_people_day
 
@@ -1605,12 +1613,12 @@ label interestingNumber_day1:
 
             menu:
                 'Сесть за стол к Жене и Лене':
-                    jump lena_da
+                    jump WentToLibrarySitWithLena_day1
                 'Сесть к неизвестным':
-                    jump provod_slnet
+                    jump WentWithSlavyaSitWithOthers_day1   # Диалог тот же самый, поэтому используется фрагмент от Слави
 
 
-            label lena_da:
+            label WentToLibrarySitWithLena_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1625,10 +1633,10 @@ label interestingNumber_day1:
                 lx 'Да не за что.'
                 'Лена лишь кивнула. Я уже хотел спросить имя светловолосой, но она опередила меня.'
 
-                jump lenochochka
+                jump SlavyaKnowsEveryone_day1
 
 
-            label lenochochka:
+            label SlavyaKnowsEveryone_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1646,13 +1654,13 @@ label interestingNumber_day1:
                 'Через какое-то время Славя прервала тишину над нашем столом.'
                 sl 'Кстати, Лёша, вы же знаете, в какой отряд попали?'
 
-                if ungood == 1:
-                    jump lena_da1
+                if day1_helpedLena:
+                    jump SashaJoking_day1
                 else:
-                    jump lena_net1
+                    jump SashaQuite_day1
 
 
-            label lena_da1:
+            label SashaJoking_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1667,10 +1675,10 @@ label interestingNumber_day1:
                 lx 'Спасибо за информацию, будем знать.'
                 'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
-                jump skoro_kon
+                jump AfterCafeteria_day1
 
 
-        label gosha_help_no:
+        label CafeteriaNotHelpedLenaInLibrary_day1:
 
             scene bg int_dining_hall_people_day
 
@@ -1679,16 +1687,16 @@ label interestingNumber_day1:
 
             menu:
                 'Сесть к Жене и Лене':
-                    jump zenia
+                    jump NotHelpedLenaInLibrarySitWithLena_day1
 
                 'Сесть к Ульяне':
-                    if usgood == 1:
-                        jump sexulana
+                    if day1_agreedWithUlyana:
+                        jump NotHelpedLenaInLibraryAgreedWithUlyanaSitWithUlyana_day1
                     else:
-                        jump nosexulana
+                        jump NotHelpedLenaInLibraryNotAgreedWithUlyanaSitWithUlyana_day1
 
 
-            label zenia:
+            label NotHelpedLenaInLibrarySitWithLena_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1708,10 +1716,10 @@ label interestingNumber_day1:
                 slp 'А пока садитесь за стол. Меня, кстати, зовут Славя.'
                 'Мы сели за стол.'
 
-                jump lenochochka
+                jump SlavyaKnowsEveryone_day1
 
 
-            label lena_net1:
+            label SashaQuite_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1725,10 +1733,10 @@ label interestingNumber_day1:
                 lx 'Ясно.'
                 'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
-                jump skoro_kon
+                jump AfterCafeteria_day1
 
 
-            label sexulana:
+            label NotHelpedLenaInLibraryAgreedWithUlyanaSitWithUlyana_day1:
 
                 'Наш выбор пал на стол мелкой ракеты. Лучше уж к ней, чем чувствовать себя неловко за то, что не помогли с уборкой Жене и Лене.'
                 'Взяв подносы с едой, мы отправились к мелкой.'
@@ -1747,10 +1755,10 @@ label interestingNumber_day1:
                 lx 'Спасибо за информацию.'
                 'После этого я всё-таки решил рассмотреть двух других девушек.'
 
-                jump ulala
+                jump AdmiringGirls_day1
 
 
-            label ulala:
+            label AdmiringGirls_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1759,13 +1767,13 @@ label interestingNumber_day1:
                 'Девушка, которая продолжала говорить, имела длинные аквамариновые волосы. Она была ниже бунтарки, но выше Ульяны. Также, я заметил азиатские черты на её лице. Говорила она с закрытыми глазами и приятной улыбкой.'
                 'Из осмотра девушек меня вырвала рыжая.'
 
-                if usgood == 1:
-                    jump ulala1
+                if day1_agreedWithUlyana:
+                    jump AgreedWithUlyanaDialogContinue_day1
                 else:
-                    jump ulala2
+                    jump NotAgreedWithUlyanaDialogContinue_day1
 
 
-                label ulala1:
+                label AgreedWithUlyanaDialogContinue_day1:
 
                     scene bg int_dining_hall_people_day
 
@@ -1803,10 +1811,10 @@ label interestingNumber_day1:
                     'Доедали мы в полной тишине, даже Мику. Видимо, её всё-таки задела фраза Ульяны и она решила помолчать.'
                     'Поев и попрощавшись с девушками, мы сдали посуду и вышли из столовой.'
 
-                    jump skoro_kon
+                    jump AfterCafeteria_day1
 
 
-            label nosexulana:
+            label NotHelpedLenaInLibraryNotAgreedWithUlyanaSitWithUlyana_day1:
 
                 scene bg int_dining_hall_people_day
 
@@ -1829,10 +1837,10 @@ label interestingNumber_day1:
                 cn 'Мда, мелкая. Ну и на этом спасибо.'
                 'Пока мелкая не приступила к знакомству с нашим столом, я решил рассмотреть двух других девушек.'
 
-                jump ulala
+                jump AdmiringGirls_day1
 
 
-                label ulala2:
+                label NotAgreedWithUlyanaDialogContinue_day1:
 
                     scene bg int_dining_hall_people_day
 
@@ -1857,9 +1865,9 @@ label interestingNumber_day1:
                     'Дальше я уже не слушал и, изредка кивая, продолжал есть. В оставшееся время, не считая Мику, никто ничего не сказал.'
                     'Поев и попрощавшись с девушками, мы сдали посуду и вышли из столовой.'
 
-                    jump skoro_kon
+                    jump AfterCafeteria_day1
 
-    label skoro_kon:
+    label AfterCafeteria_day1:
 
         scene bg ext_dining_hall_near_sunset with dissolve
         $ persistent.sprite_time = 'sunset'
@@ -1966,7 +1974,7 @@ label interestingNumber_day1:
         th 'Что за чёрт?'
         'Шуршание длилось недолго и быстро стихло, а силуэт исчез.'
 
-        if ungood == 0 and libri == 1:
+        if ((day1_wentToLibrary) and (day1_helpedLena == False)):
             th 'Видимо, шпион сбежал. {w}Хм, шпион... Может, это опять Ульяна была? После событий в библиотеке можно сделать вывод, что она любит кусты. {w}Ладно, плевать.'
         else:
             th 'Не знаю, кто или что это было, но оно убежало. Надеюсь, что на оставшемся пути к дому такого не будет. {w}Ладно, плевать.'
@@ -2097,4 +2105,4 @@ label interestingNumber_day1:
 
         'Я хотел что-то спросить, но в этот момент проснулся.'
         
-        jump ourday2
+        # jump ourday2

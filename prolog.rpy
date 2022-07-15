@@ -1,14 +1,21 @@
 init:
 
-    # point vaiables
-    $ slgood = 0
-    $ usgood = 0
-    $ ungood = 0
-    $ dvgood = 0
-    $ migood = 0
-    $ sqare = 0
-    $ oston = 0
-    $ libri = 0
+    # points vaiables
+    $ dvPoints = 0 # Алиса
+    $ miPoints = 0 # Мику
+    $ slPoints = 0 # Славя
+    $ unPoints = 0 # Лена
+    $ usPoints = 0 # Ульяна
+
+    # day 1 variables
+    $ day1_wentToBusStop = False
+    $ day1_wentToLibrary = False
+    $ day1_wentToSquare = False
+    $ day1_wentWithSlavya = False
+    $ day1_helpedGosha = False
+    $ day1_helpedLena = False
+    $ day1_agreedWithUlyana = False
+    $ day1_attendMusicClub = False
 
     # mod name & start tag
     $ mods['interestingNumber'] = u'Интересный номер'
@@ -162,4 +169,4 @@ label interestingNumber:
     'В моей голове промелькнула фраза: \"Интересный номер\".'
     'И тут погас свет.'
 
-jump interestingNumber_day1
+jump InterestingNumber_day1
