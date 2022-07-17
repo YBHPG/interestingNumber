@@ -203,7 +203,7 @@ label InterestingNumber_day1:
     $ disable_all_zones()
     $ set_zone('square', 'Square_day1')
     $ set_zone('camp_entrance', 'BusStop_day1')
-    $ set_zone('library', 'WentToLibrary_day1')
+    $ set_zone('library', 'Library_day1')
     $ show_map()
 
     label Square_day1:
@@ -837,7 +837,7 @@ label InterestingNumber_day1:
             lx 'Хм. Парни, у меня есть неплохая идея. Только давайте сначала на площадь. Там всё объясню.'
 
             scene bg ext_square_day with dissolve
-            $ libri += 1
+            $ day1_wentToLibrary = True
             jump tryingToGetOut_day1
 
 

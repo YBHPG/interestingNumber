@@ -28,6 +28,7 @@ init:
     $ day2_cafeteriaWithLena = False
     $ day2_cafeteriaWithGuys = False
     $ day2_helpUlyanaInHospital = False
+    $ day2_helpedWithInvestigation = False
 
     # mod name & start tag
     $ mods['interestingNumber'] = u'Интересный номер'
@@ -36,6 +37,7 @@ init:
     $ lx = Character(u'Лёха', color='#B8860B', what_color='#E2C778')
     $ gh = Character(u'Гошан', color='#9E8565', what_color='#E2C778')
     $ cn = Character(u'Саня', color='#A52A2A', what_color='#E2C778')
+    $ all = Character(u'Все', color='#30D5C8')
     $ iv = Character(u'Внутренний голос', color='#ddf9ff', what_color='#E2C778')
     $ unvo = Character(u'Голос', color='#FAFAFA', what_color='#E2C778')
 
