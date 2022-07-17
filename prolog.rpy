@@ -17,6 +17,18 @@ init:
     $ day1_agreedWithUlyana = False
     $ day1_attendMusicClub = False
 
+    # day 2 variables
+    $ day2_StrangeNote = False
+    $ day2_helpInMusicClub = False
+    $ day2_tryToTalkWithLena = False
+    $ day2_cafeteriaWithAlice = False
+    $ day2_cafeteriaWithSlavya = False
+    $ day2_cafeteriaWithMiku = False
+    $ day2_cafeteriaWithUlyana = False
+    $ day2_cafeteriaWithLena = False
+    $ day2_cafeteriaWithGuys = False
+    $ day2_helpUlyanaInHospital = False
+
     # mod name & start tag
     $ mods['interestingNumber'] = u'Интересный номер'
 

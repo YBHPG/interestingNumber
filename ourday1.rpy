@@ -2105,4 +2105,4 @@ label InterestingNumber_day1:
 
         'Я хотел что-то спросить, но в этот момент проснулся.'
         
-        # jump ourday2
+        jump InterestingNumber_day2
