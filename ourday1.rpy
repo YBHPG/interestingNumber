@@ -1,9 +1,9 @@
 label InterestingNumber_day1:
 
     # images
-    image day1_railroad = '/interestingNumber/images/day1/day1_railroad.jpg'
-    image day1_lake = '/interestingNumber/images/day1/day1_lake.jpg'
-    image avtoda = '/interestingNumber/images/day1/avtoda1.jpg'
+    image day1_railroad = './interestingNumber/images/day1/day1_railroad.jpg'
+    image day1_lake = './interestingNumber/images/day1/day1_lake.jpg'
+    image avtoda = './interestingNumber/images/day1/avtoda1.jpg'
 
     $ backdrop = 'days'
     $ new_chapter(1, u'Интересный номер. День первый.')
@@ -1204,7 +1204,7 @@ label InterestingNumber_day1:
             $ renpy.pause(1)
             scene bg int_dining_hall_people_day with dissolve
             play ambience ambience_dining_hall_full fadein 1
-            play music '/interestingNumber/sound/k_stolovke.mp3' fadein 1.5
+            play music './interestingNumber/sound/k_stolovke.mp3' fadein 1.5
 
             play sound sfx_open_door_1
 
@@ -1276,6 +1276,8 @@ label InterestingNumber_day1:
 
                 'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
+                $ slPoints += 1
+                $ unPoints += 1
                 jump AfterCafeteria_day1
 
 
@@ -1322,6 +1324,9 @@ label InterestingNumber_day1:
                 'После этого все за столиком, кроме Мику, молча доедали, а она без умолку о чём-то говорила.'
                 'Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
+                $ dvPoints += 1
+                $ usPoints += 1
+                $ miPoints += 1
                 jump AfterCafeteria_day1
 
 
@@ -1395,6 +1400,9 @@ label InterestingNumber_day1:
                 'После этого все за столиком, кроме Мику, молча доедали, а она без умолку о чём-то говорила.'
                 'Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
+                $ miPoints += 1
+                $ dvPoints += 1
+                $ usPoints += 1
                 jump AfterCafeteria_day1
 
 
@@ -1442,6 +1450,9 @@ label InterestingNumber_day1:
                 'После этого все за столиком, кроме Мику, молча доедали, а она без умолку о чём-то говорила.'
                 'Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
+                $ miPoints += 1
+                $ dvPoints += 1
+                $ usPoints += 1
                 jump AfterCafeteria_day1
 
 
@@ -1459,6 +1470,8 @@ label InterestingNumber_day1:
                 'Я лишь кивнул в ответ.'
                 'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
+                $ slPoints += 1
+                $ unPoints += 1
                 jump AfterCafeteria_day1
 
 
@@ -1551,6 +1564,9 @@ label InterestingNumber_day1:
                 lx 'Спасибо большое, что рассказала. Познакомимся с ними как-нибудь позже.'
                 'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
+                $ miPoints += 1
+                $ dvPoints += 1
+                $ usPoints += 1
                 jump AfterCafeteria_day1
 
 
@@ -1591,6 +1607,8 @@ label InterestingNumber_day1:
             lx 'Спасибо за информацию, будем знать.'
             'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
+            $ slPoints += 1
+            $ unPoints += 1
             jump AfterCafeteria_day1
 
 
@@ -1675,6 +1693,8 @@ label InterestingNumber_day1:
                 lx 'Спасибо за информацию, будем знать.'
                 'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
+                $ slPoints += 1
+                $ unPoints += 1
                 jump AfterCafeteria_day1
 
 
@@ -1733,6 +1753,8 @@ label InterestingNumber_day1:
                 lx 'Ясно.'
                 'Доедали мы в полной тишине. Поев и попрощавшись с девушками, мы сдали посуду, и вышли из столовой.'
 
+                $ slPoints += 1
+                $ unPoints += 1
                 jump AfterCafeteria_day1
 
 
@@ -1811,6 +1833,9 @@ label InterestingNumber_day1:
                     'Доедали мы в полной тишине, даже Мику. Видимо, её всё-таки задела фраза Ульяны и она решила помолчать.'
                     'Поев и попрощавшись с девушками, мы сдали посуду и вышли из столовой.'
 
+                    $ miPoints += 1
+                    $ dvPoints += 1
+                    $ usPoints += 1
                     jump AfterCafeteria_day1
 
 
@@ -1865,6 +1890,9 @@ label InterestingNumber_day1:
                     'Дальше я уже не слушал и, изредка кивая, продолжал есть. В оставшееся время, не считая Мику, никто ничего не сказал.'
                     'Поев и попрощавшись с девушками, мы сдали посуду и вышли из столовой.'
 
+                    $ miPoints += 1
+                    $ dvPoints += 1
+                    $ usPoints += 1
                     jump AfterCafeteria_day1
 
     label AfterCafeteria_day1:
@@ -1886,7 +1914,7 @@ label InterestingNumber_day1:
         th 'Единственное, что знаем - это что нас запихнули, вроде бы, в наш СССР, в пионерлагерь, и то, что отсюда, на основе наших экспериментов, не выбраться. Класс.'
         'Но вдруг, мой блуждающий взгляд выцепил развалюху, которая когда-то была машиной.'
 
-        play music '/interestingNumber/sound/let_see_car.mp3' fadein 1.5
+        play music './interestingNumber/sound/let_see_car.mp3' fadein 1.5
 
         lx 'Парни, видете этот конструктор нашего автопрома? Давайте-ка посмотрим, работает ли она.'
         'Подождав, когда все пионеры уйдут, наша компашка двинула на осмотр авто.'
@@ -2023,7 +2051,7 @@ label InterestingNumber_day1:
 
         'Я сижу на кухне. {w}На столе скомканная пачка сигарет, рядом с ней чашка чая.'
 
-        play sound '/interestingNumber/sound/kashelda1.mp3'
+        play sound './interestingNumber/sound/kashelda1.mp3'
 
         'Делаю затяжку, кашляю.'
 
