@@ -42,12 +42,26 @@ init:
     $ unvo = Character(u'Голос', color='#FAFAFA', what_color='#E2C778')
 
     # images
-    image prologue_kitchen = '/interestingNumber/images/prologue/prologue_kitchen.jpg'
-    image prologue_lada = '/interestingNumber/images/prologue/prologue_lada.jpg'
+    image prologue_kitchen = './interestingNumber/images/prologue/prologue_kitchen.jpg'
+    image prologue_lada = './interestingNumber/images/prologue/prologue_lada.jpg'
+
+    
 
 label interestingNumber:
 
-    play music '/interestingNumber/sound/skazka.mp3'
+    $ renpy.watch("dvPoints")
+    $ renpy.watch("miPoints")
+    $ renpy.watch("slPoints")
+    $ renpy.watch("unPoints")
+    $ renpy.watch("usPoints")
+    $ renpy.watch("day2_cafeteriaWithAlice")
+    $ renpy.watch("day2_cafeteriaWithSlavya")
+    $ renpy.watch("day2_cafeteriaWithMiku")
+    $ renpy.watch("day2_cafeteriaWithUlyana")
+    $ renpy.watch("day2_cafeteriaWithLena")
+    $ renpy.watch("day2_cafeteriaWithGuys")
+
+    play music './interestingNumber/sound/skazka.mp3'
     scene bg semen_room with dissolve
 
     'Я - Алексей Наумов, студент второго курса из никому неизвестного универа. Благо, только в него я смог попасть на бюджет.'
@@ -56,15 +70,14 @@ label interestingNumber:
 
     play sound sfx_inhale
     stop music fadeout 0.5
-    play music ['<silence .5>', '/interestingNumber/sound/skazka.mp3'] fadein 0.5
     show blinking
     play sound sfx_door_bell
 
     'Мои раздумья прервал звонок в дверь. Я закрыл ноутбук и с тяжестью поднялся с дивана.'
 
     stop sound
+    play music ['./interestingNumber/sound/skazka.mp3'] fadein 0.5
     play sound sfx_inhale
-    play music['everyday_theme'] fadeout 1.5 fadein 1.0
 
     th 'Чёрт, сколько я так сидел? Всё тело затекло.'
 
